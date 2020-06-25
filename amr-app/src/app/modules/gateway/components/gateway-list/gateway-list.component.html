@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BORDERED TABLE -->
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Gateways</h3>
+      </div>
+
+      <div class="panel-body">
+          <div class="row">
+              <div class="col-lg-3">
+                <label>Gateway Code</label>
+                <input type="text" id="gatewayCode" name="gatewayCode" [(ngModel)]="gatewayCode" class="form-control" >
+              </div>
+              <div class="col-lg-3">
+                <app-device-vendor-select (entityEmitter)="onDevicVendorChange($event)"></app-device-vendor-select>
+              </div>
+              <div class="col-lg-3">
+                <app-device-group-select (entityEmitter)="onDevicGroupChange($event)"></app-device-group-select>
+              </div>
+              <div class="col-lg-3">
+                <br>
+                <button type="button" class="btn btn-info" (click)="search()" translate>Search</button>
+              </div>
+            </div>
+        <div class="row">
+          <!-- <div class="col-lg-6">
+            <input type="text" id="Keywork" name="Keywork" [(ngModel)]="dataSource.Keyword" class="form-control" placeholder="{{ 'Keywork' | translate }}">
+          </div> -->
+          <div class="col-lg-2">
+            <button type="button" class="btn btn-info" (click)="search()" translate>Search</button>
+          </div>
+          <div class="col-lg-2">
+            <button type="button" class="btn btn-info" (click)="exportAsXLSX()" translate>Export To Excel</button>
+          </div>
+          <div class="col-lg-2">
+            <button type="button" class="btn btn-info" (click)="generatePdf()" translate>Export To PDF</button>
+          </div>
+        </div>
+
+        <table class="table table-bordered" id="gateways">
+          <thead>
+            <tr>
+              <th>Gateway Id</th>
+              <th>Gateway Code</th>
+              <th>FTP Host Name</th>
+              <th>Coord LAT</th>
+              <th>Coord LON</th>
+              <th>Is Fixed</th>
+              <th translate>Actions</th>
+            </tr>
+          </thead>
+          <tbody infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+            <tr *ngFor="let gateway of allGateway;let i = index">
+              <td>{{gateway.gateway_Id}}</td>
+              <td>{{gateway.gateway_Code}}</td>
+              <td>{{gateway.ftP_Host_Name}}</td>
+              <td>{{gateway.coord_LAT}}</td>
+              <td>{{gateway.coord_LON}}</td>
+              <td>{{gateway.is_Fixed}}</td>
+              <td>
+                  <span *ngFor="let item of privileges">
+                    <button (click)="onActionclick(item,meter)" *ngIf="item.privilege_type==2"> {{item.privilege_name}}</button>
+                  </span>
+                </td>
+              <!-- <td>
+                <a class="link" (click)="getGatewayVendorDetailsById(gateway.vendorId)">{{gateway.vendorName}} </a>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

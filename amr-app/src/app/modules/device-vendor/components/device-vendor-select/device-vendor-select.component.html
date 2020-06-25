@@ -1,0 +1,6 @@
+<label translate>Device Dendor</label>
+<div class="input-container">
+        <ng-select [items]="deviceVendorList" bindLabel="vendorName" placeholder="Select Vendor" appendTo="body" [(ngModel)]="selected" (change)="onDeviceVendorChange()">
+        </ng-select>
+        <!-- <i class="fa fa-user icon"></i> -->
+</div>

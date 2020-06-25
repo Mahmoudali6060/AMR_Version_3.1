@@ -1,0 +1,6 @@
+<label translate>Device Group</label>
+<div class="input-container">
+        <ng-select [items]="deviceGroupList" bindLabel="groupName" placeholder="Select Group" appendTo="body" [(ngModel)]="selected" (change)="onDeviceGroupChange()">
+        </ng-select>
+        <!-- <i class="fa fa-user icon"></i> -->
+</div>

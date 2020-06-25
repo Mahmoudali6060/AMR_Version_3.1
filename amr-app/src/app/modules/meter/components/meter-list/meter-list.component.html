@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BORDERED TABLE -->
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Meters</h3>
+      </div>
+
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-3">
+            <label>HCN</label>
+            <input type="text" id="hcn" name="hcn" [(ngModel)]="hcn" class="form-control">
+          </div>
+          <div class="col-lg-3">
+            <app-device-vendor-select (entityEmitter)="onDevicVendorChange($event)"></app-device-vendor-select>
+          </div>
+          <div class="col-lg-3">
+            <app-device-group-select (entityEmitter)="onDevicGroupChange($event)"></app-device-group-select>
+          </div>
+          <div class="col-lg-3">
+            <br>
+            <button type="button" class="btn btn-info" (click)="search()" translate>Search</button>
+          </div>
+        </div>
+
+        <div class="row">
+
+
+
+          <div class="col-lg-2">
+            <button type="button" class="btn btn-info" (click)="exportAsXLSX()" translate>Export To Excel</button>
+          </div>
+          <div class="col-lg-2">
+            <button type="button" class="btn btn-info" (click)="generatePdf()" translate>Export To PDF</button>
+          </div>
+        </div>
+        <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+          <table class="table table-bordered" id="meters">
+            <thead>
+              <tr>
+                <th>Meter Id</th>
+                <th>Badge No</th>
+                <th>HCN</th>
+                <th>Module Id</th>
+                <th translate>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let meter of allMeter;let i = index">
+                <td>{{meter.meter_Id}}</td>
+                <td>{{meter.badge_No}}</td>
+                <td>{{meter.hcn}}</td>
+                <td>{{meter.module_Id}}</td>
+                <td>
+                  <span *ngFor="let item of privileges">
+                    <button (click)="onActionclick(item,meter)" *ngIf="item.privilege_type==2"> {{item.privilege_name}}</button>
+                  </span>
+                </td>
+
+                <!-- <td>
+                <a class="link" (click)="getMeterVendorDetailsById(meter.vendorId)">{{meter.vendorName}} </a>
+              </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
