@@ -1,0 +1,6 @@
+<label translate>Meter Model</label>
+<div class="input-container">
+        <ng-select [items]="meterModelList" bindLabel="modelName" placeholder="Select Model" appendTo="body" [(ngModel)]="selected" (change)="onMeterModelChange()">
+        </ng-select>
+        <!-- <i class="fa fa-user icon"></i> -->
+</div>

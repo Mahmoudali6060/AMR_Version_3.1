@@ -1,0 +1,15 @@
+<div mat-dialog-content>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" translate>Change Meter Model</h4>
+        <button type="button" class="close" aria-label="Close" (click)="hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-meter-model-select [id]=[data.selectedMeterModelId] (entityEmitter)="onMeterModelChange($event)"></app-meter-model-select>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" [mat-dialog-close]="true" translate>Ok</button>
+        <button type="button" class="btn btn-default" (click)="hide()" translate>Cancel</button>
+    </div>
+</div>

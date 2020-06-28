@@ -6,6 +6,7 @@ export class MeterModel {
     groupId: number;
     vendorId: number;
     serialNo: string;
+    modelId: number;
 }
 
 

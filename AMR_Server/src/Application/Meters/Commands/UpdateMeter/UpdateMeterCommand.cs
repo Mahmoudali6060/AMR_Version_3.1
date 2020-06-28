@@ -12,10 +12,10 @@ namespace AMR_Server.Application.Meters.Commands.UpdateMeter
         public string MeterId { get; set; }
         public decimal? GroupId { get; set; }
         public short? VendorId { get; set; }
-        public string SerialNo { get; set; }
+        public short? ModelId { get; set; }
     }
 
-    public class UpdateMeterCommandHandler : IRequestHandler<UpdateMeterCommand,string>
+    public class UpdateMeterCommandHandler : IRequestHandler<UpdateMeterCommand, string>
     {
         private readonly IAmrDbContext _context;
 
@@ -35,7 +35,7 @@ namespace AMR_Server.Application.Meters.Commands.UpdateMeter
 
             entity.VendorId = request.VendorId;
             entity.GroupId = request.GroupId;
-            entity.SerialNo = request.SerialNo;
+            entity.ModelId = request.ModelId;
 
             await _context.SaveChangesAsync(cancellationToken);
 

@@ -15,5 +15,7 @@ namespace AMR_Server.Domain.ComplexTypes
         public decimal? GroupId { get; set; }
         public short? VendorId { get; set; }
         public string SerialNo { get; set; }
+        public short? ModelId { get; set; }
+
     }
 }

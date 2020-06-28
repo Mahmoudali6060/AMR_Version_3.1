@@ -7,6 +7,7 @@ import { MeterService } from './services/meter.service';
 import { ReportModule } from 'src/app/modules/report/report.module';
 import { DeviceVendorModule } from 'src/app/modules/device-vendor/device-vendor.module';
 import { DeviceGroupModule } from 'src/app/modules/device-group/device-group.module';
+import { MeterModelModule } from 'src/app/modules/meter-model/meter-model.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { DeviceGroupModule } from 'src/app/modules/device-group/device-group.mod
     InfiniteScrollModule,
     ReportModule,
     DeviceVendorModule,
-    DeviceGroupModule
+    DeviceGroupModule,
+    MeterModelModule
     
   ],
   exports: [

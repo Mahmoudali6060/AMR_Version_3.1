@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
+    <Folder Include="MeterModels\Commands\" />
     <Folder Include="DeviceGroups\Commands\" />
     <Folder Include="DeviceVendors\Commands\" />
     <Folder Include="UserBasicDatas\Queries\" />

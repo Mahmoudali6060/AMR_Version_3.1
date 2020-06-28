@@ -21,6 +21,8 @@ import { ChangeGroupDialogComponent } from 'src/app/modules/device-group/compone
 import { DeviceGroupService } from 'src/app/modules/device-group/services/device-group.service';
 import { ChangeVendorDialogComponent } from 'src/app/modules/device-vendor/components/change-vendor-dialog/change-vendor-dialog.component';
 import { DeviceVendorService } from 'src/app/modules/device-vendor/services/device-vendor.service';
+import { ChangeMeterModelDialogComponent } from 'src/app/modules/meter-model/components/change-meter-model-dialog/change-meter-model-dialog.component';
+import { MeterModelService } from 'src/app/modules/meter-model/services/meter-model.service';
 @Component({
 	selector: 'app-meter-list',
 	templateUrl: './meter-list.component.html',
@@ -40,6 +42,7 @@ export class MeterListComponent implements OnInit {
 		private dialog: MatDialog,
 		private deviceGroupService: DeviceGroupService,
 		private deviceVendorService: DeviceVendorService,
+		private meterModelService: MeterModelService,
 		private authSrvice: AuthService) {
 		this.dataSource.CurrentPage = 1;
 		pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -110,6 +113,9 @@ export class MeterListComponent implements OnInit {
 			case PrivilegeEnum.ChangeVendor:
 				this.showVendorDialog(meter);
 				break;
+			case PrivilegeEnum.ChangeComModel:
+				this.showMeterModelDialog(meter);
+				break;
 
 			default:
 				break;
@@ -154,7 +160,20 @@ export class MeterListComponent implements OnInit {
 		});
 		dialogRef.afterClosed().subscribe(result => {
 			if (result) {
-				meter.vendorId = this.deviceGroupService.deviceGroupModel.groupId;
+				meter.vendorId = this.deviceVendorService.deviceVendorModel.vendorId;
+				this.update(meter);
+			}
+		});
+	}
+
+	showMeterModelDialog(meter: MeterModel): void {
+		const dialogRef = this.dialog.open(ChangeMeterModelDialogComponent, {
+			width: '350px',
+			data: { selectedMeterModelId: meter.modelId }
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+				meter.modelId = this.meterModelService.meterModelModel.modelId;
 				this.update(meter);
 			}
 		});
