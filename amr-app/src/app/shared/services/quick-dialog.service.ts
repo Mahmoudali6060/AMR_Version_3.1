@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { DeviceVendorService } from 'src/app/modules/meter/services/device-vendor.service';
 import { QuickDialogEntitiesEnum } from 'src/app/shared/enums/quick-dialog-entities.enum';
+import { DeviceVendorService } from 'src/app/modules/device-vendor/services/device-vendor.service';
 
 @Injectable()
 export class QuickDialogService {

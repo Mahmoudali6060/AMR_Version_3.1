@@ -5,6 +5,7 @@ import { DeviceGroupService } from './services/device-group.service';
 import { ReportModule } from 'src/app/modules/report/report.module';
 import { DeviceGroupRoutingModule } from './device-group-routing.module';
 import { DeviceGroupSelectComponent } from 'src/app/modules/device-group/components/device-group-select/device-group-select.component';
+import { ChangeGroupDialogComponent } from 'src/app/modules/device-group/components/change-group-dialog/change-group-dialog.component';
 
 @NgModule({
   imports: [
@@ -14,10 +15,15 @@ import { DeviceGroupSelectComponent } from 'src/app/modules/device-group/compone
     ReportModule
   ],
   exports: [
-    DeviceGroupSelectComponent
+    DeviceGroupSelectComponent,
+    ChangeGroupDialogComponent
   ],
   declarations: [
-    DeviceGroupSelectComponent
+    DeviceGroupSelectComponent,
+    ChangeGroupDialogComponent
+  ],
+  entryComponents: [
+    ChangeGroupDialogComponent
   ],
   providers: [
     DeviceGroupService

@@ -11,7 +11,7 @@ export class DeviceVendorSelectComponent {
   deviceVendorList: Array<DeviceVendorModel>;
   @Output() entityEmitter = new EventEmitter<DeviceVendorModel>();
   selected: DeviceVendorModel = new DeviceVendorModel();
-  @Input() id: number;
+  @Input('id') id: number;
   constructor(private deviceVendorService: DeviceVendorService) {
   }
 

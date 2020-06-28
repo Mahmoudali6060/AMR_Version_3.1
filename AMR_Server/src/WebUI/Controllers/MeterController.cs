@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AMR_Server.Application.Meters.Commands;
+using AMR_Server.Application.Meters.Commands.UpdateMeter;
 using AMR_Server.Application.Meters.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,11 +33,17 @@ namespace AMR_Server.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(string meterId)
         {
-            var meters = await Mediator.Send(new DeleteMeterCommand()
+            return Ok(await Mediator.Send(new DeleteMeterCommand()
             {
-              MeterId=meterId
-            });
-            return Ok(meters);
+                MeterId = meterId
+            }));
+        }
+
+        [Route("Update")]
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateMeterCommand command)
+        {
+            return Ok(await Mediator.Send(command));
         }
     }
 }

@@ -17,6 +17,10 @@ import { PageEnum } from 'src/app/shared/enums/page.enum';
 import { PagePrivilegeModel } from 'src/app/shared/models/page-privilege.model';
 import { PrivilegeEnum } from 'src/app/shared/enums/privilege.enum';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ChangeGroupDialogComponent } from 'src/app/modules/device-group/components/change-group-dialog/change-group-dialog.component';
+import { DeviceGroupService } from 'src/app/modules/device-group/services/device-group.service';
+import { ChangeVendorDialogComponent } from 'src/app/modules/device-vendor/components/change-vendor-dialog/change-vendor-dialog.component';
+import { DeviceVendorService } from 'src/app/modules/device-vendor/services/device-vendor.service';
 @Component({
 	selector: 'app-meter-list',
 	templateUrl: './meter-list.component.html',
@@ -34,6 +38,8 @@ export class MeterListComponent implements OnInit {
 		private excelService: ExcelService,
 		private reportService: ReportService,
 		private dialog: MatDialog,
+		private deviceGroupService: DeviceGroupService,
+		private deviceVendorService: DeviceVendorService,
 		private authSrvice: AuthService) {
 		this.dataSource.CurrentPage = 1;
 		pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -96,7 +102,13 @@ export class MeterListComponent implements OnInit {
 	public onActionclick(pagePrivilegeModel: PagePrivilegeModel, meter: MeterModel) {
 		switch (pagePrivilegeModel.privilege_id) {
 			case PrivilegeEnum.Delete:
-				this.showConfirmDialog(meter.meter_Id);
+				this.showConfirmDialog(meter);
+				break;
+			case PrivilegeEnum.ChangeGroup:
+				this.showGroupDialog(meter);
+				break;
+			case PrivilegeEnum.ChangeVendor:
+				this.showVendorDialog(meter);
 				break;
 
 			default:
@@ -104,21 +116,53 @@ export class MeterListComponent implements OnInit {
 		}
 	}
 
-	showConfirmDialog(id): void {
+	showConfirmDialog(meter: MeterModel): void {
 		const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
 			width: '350px',
 			data: "Do you confirm the deletion of this data?"
 		});
 		dialogRef.afterClosed().subscribe(result => {
 			if (result) {
-				this.delete(id);
+				this.delete(meter.meterId);
 			}
 		});
 	}
 
 	private delete(meterId: any) {
 		this.meterService.delete(meterId).subscribe((res) => {
-			this.allMeter = this.allMeter.filter(x => x.meter_Id != meterId);
+			this.allMeter = this.allMeter.filter(x => x.meterId != meterId);
+		});
+	}
+
+	showGroupDialog(meter: MeterModel): void {
+		const dialogRef = this.dialog.open(ChangeGroupDialogComponent, {
+			width: '350px',
+			data: { selectedGroupId: meter.groupId }
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+				meter.groupId = this.deviceGroupService.deviceGroupModel.groupId;
+				this.update(meter);
+			}
+		});
+	}
+
+	showVendorDialog(meter: MeterModel): void {
+		const dialogRef = this.dialog.open(ChangeVendorDialogComponent, {
+			width: '350px',
+			data: { selectedVendorId: meter.vendorId }
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+				meter.vendorId = this.deviceGroupService.deviceGroupModel.groupId;
+				this.update(meter);
+			}
+		});
+	}
+
+	private update(meter: any) {
+		this.meterService.update(meter).subscribe((res) => {
+			// this.allMeter = this.allMeter.filter(x => x.meter_Id != meterId);
 		});
 	}
 }

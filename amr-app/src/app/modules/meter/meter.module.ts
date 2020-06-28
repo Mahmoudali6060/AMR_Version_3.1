@@ -5,7 +5,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MeterService } from './services/meter.service';
 import { ReportModule } from 'src/app/modules/report/report.module';
-import { DeviceVendorService } from 'src/app/modules/meter/services/device-vendor.service';
 import { DeviceVendorModule } from 'src/app/modules/device-vendor/device-vendor.module';
 import { DeviceGroupModule } from 'src/app/modules/device-group/device-group.module';
 
@@ -26,8 +25,7 @@ import { DeviceGroupModule } from 'src/app/modules/device-group/device-group.mod
     MeterListComponent
   ],
   providers: [
-    MeterService,
-    DeviceVendorService
+    MeterService
   ]
 })
 

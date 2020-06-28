@@ -5,6 +5,7 @@ import { DeviceVendorService } from './services/device-vendor.service';
 import { ReportModule } from 'src/app/modules/report/report.module';
 import { DeviceVendorRoutingModule } from './device-vendor-routing.module';
 import { DeviceVendorSelectComponent } from 'src/app/modules/device-vendor/components/device-vendor-select/device-vendor-select.component';
+import { ChangeVendorDialogComponent } from 'src/app/modules/device-vendor/components/change-vendor-dialog/change-vendor-dialog.component';
 
 @NgModule({
   imports: [
@@ -14,10 +15,15 @@ import { DeviceVendorSelectComponent } from 'src/app/modules/device-vendor/compo
     ReportModule
   ],
   exports: [
-    DeviceVendorSelectComponent
+    DeviceVendorSelectComponent,
+    ChangeVendorDialogComponent
   ],
   declarations: [
-    DeviceVendorSelectComponent
+    DeviceVendorSelectComponent,
+    ChangeVendorDialogComponent
+  ],
+  entryComponents:[
+    ChangeVendorDialogComponent
   ],
   providers: [
     DeviceVendorService

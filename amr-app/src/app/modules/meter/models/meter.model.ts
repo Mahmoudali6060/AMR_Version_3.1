@@ -1,8 +1,11 @@
 export class MeterModel {
-    meter_Id: string;
-    badge_No: string;
+    meterId: string;
+    badgeNo: string;
     hcn: string;
-    module_Id: number;
+    moduleId: number;
+    groupId: number;
+    vendorId: number;
+    serialNo: string;
 }
 
 

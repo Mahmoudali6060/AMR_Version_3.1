@@ -11,7 +11,7 @@ export class DeviceGroupSelectComponent {
   deviceGroupList: Array<DeviceGroupModel>;
   @Output() entityEmitter = new EventEmitter<DeviceGroupModel>();
   selected: DeviceGroupModel = new DeviceGroupModel();
-  @Input() id: number;
+  @Input('id') id: number;
   constructor(private deviceGroupService: DeviceGroupService) {
   }
 
@@ -29,8 +29,7 @@ export class DeviceGroupSelectComponent {
 
   private prepareSelectedModel() {
     if (this.id && this.id > 0 && this.deviceGroupList) {
-	  this.selected.groupId = this.id;
-	  //
+      this.selected.groupId = this.id;
       this.selected.groupName = this.deviceGroupList.find(x => x.groupId == this.id).groupName;
     }
 

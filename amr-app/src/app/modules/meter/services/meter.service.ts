@@ -17,4 +17,8 @@ export class MeterService {
     return this.http.get<any>(`${this.httpHelperService.baseUrl}api/Meter/Delete?meterId=${meterId}`);
   }
 
+  update(meter: MeterModel): Observable<any> {
+    return this.http.post<any>(`${this.httpHelperService.baseUrl}api/Meter/Update`, meter);
+  }
+
 }

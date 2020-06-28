@@ -48,10 +48,10 @@
             </thead>
             <tbody>
               <tr *ngFor="let meter of allMeter;let i = index">
-                <td>{{meter.meter_Id}}</td>
-                <td>{{meter.badge_No}}</td>
+                <td>{{meter.meterId}}</td>
+                <td>{{meter.badgeNo}}</td>
                 <td>{{meter.hcn}}</td>
-                <td>{{meter.module_Id}}</td>
+                <td>{{meter.moduleId}}</td>
                 <td>
                   <span *ngFor="let item of privileges">
                     <button (click)="onActionclick(item,meter)" *ngIf="item.privilege_type==2"> {{item.privilege_name}}</button>
@@ -69,3 +69,5 @@
     </div>
   </div>
 </div>
+
+<!-- <app-change-group-dialog entityEmitter="onDeviceGroupChange($event)"></app-change-group-dialog> -->

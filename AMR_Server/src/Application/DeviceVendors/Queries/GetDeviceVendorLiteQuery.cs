@@ -27,7 +27,7 @@ namespace AMR_Server.Application.DeviceVendors.Queries
             public async Task<IEnumerable<DeviceVendorDto>> Handle(GetDeviceVendorLiteQuery request, CancellationToken cancellationToken)
             {
                 return await _context.MeterVendor
-                         .Where(x => x.IsActive == true && x.DeleteStatus == true)
+                         .Where(x => x.IsActive == true && x.DeleteStatus == false)
                          .ProjectTo<DeviceVendorDto>(_mapper.ConfigurationProvider)
                          .ToListAsync(cancellationToken);
             }

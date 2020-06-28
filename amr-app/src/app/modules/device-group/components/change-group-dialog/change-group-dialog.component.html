@@ -1,0 +1,15 @@
+<div mat-dialog-content>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" translate>Change Device Group</h4>
+        <button type="button" class="close" aria-label="Close" (click)="hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-device-group-select [id]=[data.selectedGroupId] (entityEmitter)="onDeviceGroupChange($event)"></app-device-group-select>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" [mat-dialog-close]="true" translate>Ok</button>
+        <button type="button" class="btn btn-default" (click)="hide()" translate>Cancel</button>
+    </div>
+</div>

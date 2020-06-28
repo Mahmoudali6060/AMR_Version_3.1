@@ -23,7 +23,6 @@ import { HelperService } from './services/helper.service';
 import { ExcelService } from 'src/app/shared/services/excel.service';
 import { QuickDialogComponent } from 'src/app/shared/components/quick-dialog/quick-dialog.component';
 import { QuickDialogService } from 'src/app/shared/services/quick-dialog.service';
-import { DeviceVendorService } from 'src/app/modules/meter/services/device-vendor.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
@@ -87,7 +86,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     DatePipe,
     HelperService,
     ExcelService,
-    DeviceVendorService,
     QuickDialogService,
     NgbActiveModal, 
     { provide: MatDialogRef, useValue: {} },

@@ -27,7 +27,7 @@ namespace AMR_Server.Application.DeviceGroups.Queries
             public async Task<IEnumerable<DeviceGroupDto>> Handle(GetDeviceGroupLiteQuery request, CancellationToken cancellationToken)
             {
                 return await _context.DeviceGroup
-                         .Where(x => x.IsActive == true && x.DeleteStatus == true)
+                         .Where(x => x.IsActive == true && x.DeleteStatus == false)
                          .ProjectTo<DeviceGroupDto>(_mapper.ConfigurationProvider)
                          .ToListAsync(cancellationToken);
             }
